@@ -29,3 +29,4 @@ Makefile
 docker-compose.yaml
 docker-compose.yml
 dockerfile
+bin/**
