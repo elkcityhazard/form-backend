@@ -14,6 +14,11 @@ func AddHeaders(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		if r.Method == http.MethodOptions {
+			return
+		}
+
 		next.ServeHTTP(w, r)
 
 	})
