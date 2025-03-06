@@ -25,7 +25,7 @@ func HandlePreFlight(next http.Handler) http.Handler {
 
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK) // Respond with 200 OK
-			return
+			next.ServeHTTP(w, r)
 		}
 		next.ServeHTTP(w, r)
 	})
