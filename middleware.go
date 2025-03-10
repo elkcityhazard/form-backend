@@ -7,7 +7,7 @@ func AddHeaders(next http.Handler) http.Handler {
 
 		w.Header().Set("Content-Type", "application/json")
 		if !app.IsProduction {
-			w.Header().Set("Access-Control-Allow-Origin", "http://localhost:1313")
+			w.Header().Set("Access-Control-Allow-Origin", "*")
 		} else {
 			w.Header().Set("Access-Control-Allow-Origin", "https://andrew-mccall.com")
 		}
@@ -25,7 +25,6 @@ func HandlePreFlight(next http.Handler) http.Handler {
 
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK) // Respond with 200 OK
-			next.ServeHTTP(w, r)
 		}
 		next.ServeHTTP(w, r)
 	})
