@@ -1,0 +1,27 @@
+FROM golang:alpine
+
+ENV SMTP_HOST=localhost
+ENV SMTP_PRT=1025
+ENV SMTP_USERNAME=testuser
+ENV SMTP_USERPASS=testpass
+ENV BIN_NAME="bin/amformbackend"
+ENV APP_PORT=":8675"
+ENV APP_IS_PROD=false
+
+RUN apk add --no-cache make
+
+RUN mkdir -p /var/www/form-backend
+
+COPY . .
+
+EXPOSE 8675
+
+
+
+CMD ["/usr/bin/make", "run"]
+
+
+
+
+
+
